@@ -11,13 +11,20 @@ export default function ClientForm({refresh, toggleRefresh}) {
 
             initialValues={{firstName: '', lastName: '', age: 0, birthDate: new Date()}}
 
-            onSubmit={(values, {setSubmitting, setFieldError}) => {
+            onSubmit={(values, {setSubmitting, setFieldError, resetForm}) => {
                 if(values.age !== gregorianAge(values.birthDate, new Date())) {
                     setFieldError("birthDate", "La fecha de nacimiento y la edad no concuerdan.");
                 }
-                createClient(values).then(result => result.json()).then(res => console.log(res))
+                createClient(values).then(result => result.json()).then(res => {
+                    if(res.code === "I1") {
+                        alert("Cliente creado exitosamente.");
+                    } else {
+                        alert("Ocurrió un error al crear el cliente.");
+                    }
+                } )
                 setSubmitting(false);
                 toggleRefresh(!refresh);
+                resetForm();
             }}
 
             validationSchema={Yup.object({

@@ -27,7 +27,7 @@ function App() {
     }, [refresh])
 
     return (
-        <>
+        <div className="body justify-content-between">
             <nav className="navbar navbar-expand-sm bg-primary navbar-dark">
                 <div>
                     <ul className="navbar-nav">
@@ -52,7 +52,6 @@ function App() {
                     </div>
                 </div>
             </div>
-            <div className="d-flex flex-grow-1"></div>
             <footer>
                 <div
                     className="text-center p-4"
@@ -61,7 +60,7 @@ function App() {
                     © 2023 Copyright
                 </div>
             </footer>
-        </>
+        </div>
 
     );
 }
